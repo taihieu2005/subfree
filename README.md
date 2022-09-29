@@ -10,4 +10,6 @@ Made by: Lorenzik
   node .
 ```
 
+
++5.000 requests in less than a minute
 ![tmrb](https://cdn.discordapp.com/attachments/984931450723926066/1025115672914698341/unknown.png)
