@@ -21,7 +21,7 @@ function ascii() {
   `)
   console.log(ascii)
   console.log(chalk.grey('----------------------------------------------------------------------------------------------------------------------'))
-  console.log(chalk.white('    https://github.com/Lorenzik/TikTok-Mass-Report-Bot'),chalk.grey(" | "),chalk.white('https://github.com/Lorenzik/TikTok-Mass-Report-Bot'),)
+  console.log(chalk.white('    https://github.com/Lorenzik/TMRB'),chalk.grey(" | "),chalk.white('https://github.com/Lorenzik/TMRB'),)
   console.log(chalk.grey('----------------------------------------------------------------------------------------------------------------------\n'))
 }
 
