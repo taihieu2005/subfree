@@ -5,6 +5,10 @@ import fs from 'fs'
 import gradient from 'gradient-string'
 import readline from 'readline'
 
+process.stdout.write(
+  String.fromCharCode(27) + "]0;" + `TikTok Mass Report Bot | Reports: 0 | Speed: 0/m` + String.fromCharCode(7)
+);
+
 console.error = function() {}
 process.on('uncaughtException' || "unhandledRejection", function (err) {
   null
@@ -41,18 +45,19 @@ rl.question(`${chalk.gray(`${new Date().toLocaleTimeString()} `) + chalk.grey(`[
   var proxies = text.split(/\r?\n/)
 
 
-  for(let proxy of proxies) {
-    setInterval(async() => {
-            const proxyAgent = new HttpsProxyAgent(`http://${proxy}`);
+setInterval(() => {
+  
+  proxies.forEach(async proxy => {
+    const proxyAgent = new HttpsProxyAgent(`http://${proxy}`);
 
-            const url = await fetch(answer, { agent: proxyAgent});
-            const json = await url.json();
-            console.log(chalk.gray(`           ${new Date().toLocaleTimeString()}  `) + gradient.vice(` Send report with ID: ${json.extra.logid} | Report count: ${reportCount}`))
-            reportCount++,reportsPerSecond++
-            
-        }, 400);
-  }
+    const url = await fetch(answer, { agent: proxyAgent});
+    const json = await url.json();
+    
+    console.log(chalk.gray(`           ${new Date().toLocaleTimeString()}  `) + gradient.vice(` Send report with ID: ${json.extra.logid} | Report count: ${reportCount}`))
+    reportCount++,reportsPerSecond++
+})
 
+}, 300);
 
   setInterval(() => {
     process.stdout.write(
