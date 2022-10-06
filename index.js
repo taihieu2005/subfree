@@ -21,7 +21,7 @@ function ascii() {
   `)
   console.log(ascii)
   console.log(chalk.grey('----------------------------------------------------------------------------------------------------------------------'))
-  console.log(chalk.white('    https://github.com/Lorenzik/TMRB'),chalk.grey(" | "),chalk.white('https://github.com/Lorenzik/TMRB'),)
+  console.log(chalk.white('    https://github.com/Lorenzik/TMRB'),chalk.grey(" | "),chalk.white('https://github.com/Lorenzik/TMRB'),chalk.grey(" | "),chalk.white('https://github.com/Lorenzik/TMRB'),)
   console.log(chalk.grey('----------------------------------------------------------------------------------------------------------------------\n'))
 }
 
@@ -37,17 +37,35 @@ rl.question(`${chalk.gray(`${new Date().toLocaleTimeString()} `) + chalk.grey(`[
   ascii()
 
   var reportCount = 1
+  let reportsPerSecond = 0
   var text = fs.readFileSync('proxies.txt','utf8')
   var proxies = text.split(/\r?\n/)
+
 
   for(let proxy of proxies) {
     setInterval(async() => {
             const proxyAgent = new HttpsProxyAgent(`http://${proxy}`);
+
             const url = await fetch(answer, { agent: proxyAgent});
             const json = await url.json();
             console.log(chalk.gray(`           ${new Date().toLocaleTimeString()}  `) + gradient.vice(` Send report with ID: ${json.extra.logid} | Report count: ${reportCount}`))
-            reportCount++
+            reportCount++,reportsPerSecond++
+            
         }, 400);
   }
+
+
+  function setTerminalTitle(title)
+{
+  process.stdout.write(
+    String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7)
+  );
+}
+
+  setInterval(() => {
+    setTerminalTitle(`TikTok Mass Report Bot | Reports: ${reportCount} | Speed: ${reportsPerSecond}/s`)
+    reportsPerSecond = 0
+  }, 1000);
+
 
 })
