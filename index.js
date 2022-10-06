@@ -36,8 +36,7 @@ rl.question(`${chalk.gray(`${new Date().toLocaleTimeString()} `) + chalk.grey(`[
 
   ascii()
 
-  var reportCount = 1
-  let reportsPerSecond = 0
+  var reportCount = 1, reportsPerSecond = 0
   var text = fs.readFileSync('proxies.txt','utf8')
   var proxies = text.split(/\r?\n/)
 
@@ -57,10 +56,10 @@ rl.question(`${chalk.gray(`${new Date().toLocaleTimeString()} `) + chalk.grey(`[
 
   setInterval(() => {
     process.stdout.write(
-      String.fromCharCode(27) + "]0;" + `TikTok Mass Report Bot | Reports: ${reportCount} | Speed: ${reportsPerSecond}/s` + String.fromCharCode(7)
+      String.fromCharCode(27) + "]0;" + `TikTok Mass Report Bot | Reports: ${reportCount} | Speed: ${reportsPerSecond*6}/m` + String.fromCharCode(7)
     );
     reportsPerSecond = 0
-  }, 1000);
+  }, 10000);
 
 
 })
